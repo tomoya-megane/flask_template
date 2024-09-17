@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='bootstrap-5.3.3-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='DataTables/datatables.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='fontawesome-free-6.6.0-web/css/all.min.css') }}">
+
+    <style>
+        body {
+            padding-top: 4.5rem;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
+    {% block style %}
+
+    {% endblock %}
+
+    <title>
+        {% block title %}
+        App Title
+        {% endblock %}
+    </title>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('home') }}">App Title</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <button type="button" class="btn btn-outline-info">app01</button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <button type="button" class="btn btn-outline-warning">app02</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="nav align-items-center">
+                    <div class="btn-group" role="group">
+                        {%- if current_user.is_authenticated -%}
+                        {%- if current_user.is_admin -%}
+                        <a class="btn btn-outline-light" href="/admin/"><i class="fas fa-cog"></i></a>
+                        {%- endif -%}
+                        <a class="btn btn-outline-light">{{ current_user.email }}</a>
+                        <a class="btn btn-outline-light" href="{{ url_for('app00.logout') }}">Logout</a>
+                        {%- else -%}
+                        <a class="btn btn-light" href="{{ url_for('app00.login') }}">Login</a>
+                        {%- endif -%}
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    {% block body %}
+
+    {% endblock %}
+
+    <footer class="footer mt-auto py-3 bg-body-tertiary">
+        <div class="container-fluid text-end">
+            <span class="text-body-secondary">Copyright &copy; 2024 tomoya-megane. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='DataTables/datatables.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='fontawesome-free-6.6.0-web/js/all.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plotly/plotly-2.34.0.min.js') }}"></script>
+</body>
+
+</html>

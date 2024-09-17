@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block title %}
+Home | App Title
+{% endblock %}
+
+{% block body %}
+<main class="flex-shrink-0" role="main">
+    <div class="container py-4">
+        <div class="p-3 mb-4 bg-body-tertiary border rounded-3">
+            <div class="container-fluid py-3">
+                <h1 class="display-5 fw-bold">App Title</h1>
+                <p class="col-md-8 fs-4">App description</p>
+            </div>
+        </div>
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6">
+                <div class="h-100 p-4 bg-body-tertiary border rounded-3">
+                    <h2>app01</h2>
+                    <p>app01 description</p>
+                    <a href="#">
+                        <button class="btn btn-info" type="button">Go to app01</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-4 bg-body-tertiary border rounded-3">
+                    <h2>app02</h2>
+                    <p>app02 description</p>
+                    <a href="#">
+                        <button class="btn btn-warning" type="button">Go to app02</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
