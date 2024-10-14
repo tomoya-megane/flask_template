@@ -26,7 +26,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash("メールアドレスまたはパスワードが間違っています。", "danger")
+            flash("Login failed. Please try again.", "danger")
         else:
             login_user(user)
             login_history = UserLoginHistory(
@@ -37,11 +37,11 @@ def login():
             try:
                 db.session.add(login_history)
                 db.session.commit()
-                flash("ログイン成功", "success")
+                flash("Login successful.", "success")
             except Exception as e:  # pylint: disable=W0703
                 db.session.rollback()
                 logging.error("Database error occurred: %s", e)
-                flash("データベースエラーが発生しました。", "danger")
+                flash("Something went wrong. Please try again later.", "danger")
             return redirect(url_for("home"))
 
     return render_template("login.html", form=form)
@@ -52,5 +52,5 @@ def login():
 def logout():
     """logout"""
     logout_user()
-    flash("ログアウトしました。", "success")
+    flash("Logout successful.", "success")
     return redirect(url_for("app00.login"))

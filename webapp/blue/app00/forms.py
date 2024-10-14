@@ -11,8 +11,8 @@ class LoginForm(FlaskForm):
     email = StringField(
         "Email",
         validators=[
-            DataRequired(message="必須項目です"),
-            Email(message="正しいメールアドレスを入力してください"),
+            DataRequired(message="This field is required."),
+            Email(message="Please enter a valid email address."),
         ],
     )
     password = PasswordField("Password", validators=[DataRequired()])
