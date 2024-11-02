@@ -1,6 +1,7 @@
 """__init__.py"""
 
-from flask import Flask, render_template
+from datetime import timedelta
+from flask import Flask, render_template, session
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -43,6 +44,14 @@ def load_user(user_id):
         return User.query.get(int(user_id))
     except (ValueError, TypeError):
         return None
+
+
+@app.before_request
+def before_request():
+    """before_request"""
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(hours=2)
+    session.modified = True
 
 
 @app.route("/", methods=["GET", "POST"])

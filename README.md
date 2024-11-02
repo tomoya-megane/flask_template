@@ -13,6 +13,7 @@
     * `admin.add_view(UserModelView(User, db.session))`
     * `admin.add_view(UserLoginHistoryModelView(UserLoginHistory, db.session))`
     * `load_user`
+    * `before_request`
     * `home`
   * config.py
   * utils/
